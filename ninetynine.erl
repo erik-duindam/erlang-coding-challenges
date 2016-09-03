@@ -23,21 +23,25 @@ nth_element(N, [_|T]) when N > 0 -> nth_element(N-1, T).
 
 %% List Length
 list_length(L) -> list_length(0, L).
+
 list_length(C, []) -> C;
 list_length(C, [_|T]) -> list_length(C+1, T).
 
 %% Reverse list
 reverse_list(L) -> reverse_list(L, []).
+
 reverse_list([], Acc) -> Acc;
 reverse_list([H|T], Acc) -> reverse_list(T, [H|Acc]).
 
 %% Is palindrome: is reversed list equal to list?
 is_palindrome(L) -> is_palindrome(L, reverse_list(L)).
+
 is_palindrome(L, L) -> true;
 is_palindrome(_, _) -> false.
 
 %% Flatten list
 flatten(X) -> flatten(X, []).
+
 flatten([], L) -> L;
 flatten([[]|T], L) -> flatten(T, L);
 flatten([[_|_]=H|T], L) -> flatten(T, flatten(H, L));

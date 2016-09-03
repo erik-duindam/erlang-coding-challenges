@@ -20,15 +20,16 @@ p01_sum(Limit, List, Acc) ->
 p01_sum(0, _) ->
   0;
 p01_sum(Limit, [H|T]) ->
-  p01_and(p01_sum(Limit, H), p01_sum(Limit, T));
+  largest(p01_sum(Limit, H), p01_sum(Limit, T));
 p01_sum(Limit, I) when Limit rem I =:= 0 ->
   Limit;
 p01_sum(_, _) ->
   0.
 
-p01_and(A, B) when B > A ->
+%% Get largest number
+largest(A, B) when B > A ->
   B;
-p01_and(A, _) ->
+largest(A, _) ->
   A.
 
 %% A quick solution if we don't care about input variables for 3 and 5
@@ -42,6 +43,7 @@ p01_static(N) ->
 %% 4613732
 p02(Max) ->
   p02(0, 0, 0, Max).
+
 p02(_, Val, Sum, Max) when Val > Max ->
   Sum;
 p02(N, Val, Sum, Max) when Val rem 2 =:= 0 ->
@@ -63,6 +65,7 @@ fib(N) ->
 %% 6857
 p03(Num) ->
   p03(Num, 2, 0).
+  
 p03(Num, Num, _) ->
   Num;
 p03(Num, Div, Acc) when Num rem Div =:= 0, Div >= Acc ->
