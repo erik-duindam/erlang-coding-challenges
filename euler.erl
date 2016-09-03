@@ -14,21 +14,26 @@ p01(Limit, Numbers) ->
 
 p01_sum(0, _, Acc) ->
   Acc;
+
 p01_sum(Limit, List, Acc) ->
   p01_sum(Limit-1, List, Acc + p01_sum(Limit, List)).
 
 p01_sum(0, _) ->
   0;
+
 p01_sum(Limit, [H|T]) ->
   largest(p01_sum(Limit, H), p01_sum(Limit, T));
+
 p01_sum(Limit, I) when Limit rem I =:= 0 ->
   Limit;
+
 p01_sum(_, _) ->
   0.
 
 %% Get largest number
 largest(A, B) when B > A ->
   B;
+
 largest(A, _) ->
   A.
 
@@ -46,17 +51,16 @@ p02(Max) ->
 
 p02(_, Val, Sum, Max) when Val > Max ->
   Sum;
+
 p02(N, Val, Sum, Max) when Val rem 2 =:= 0 ->
   p02(N+1, fib(N), Sum+Val, Max);
+
 p02(N, _, Sum, Max) ->
   p02(N+1, fib(N), Sum, Max).
 
-fib(0) ->
-  0;
-fib(1) ->
-  1;
-fib(N) ->
-  fib(N-1) + fib(N-2).
+fib(0) -> 0;
+fib(1) -> 1;
+fib(N) -> fib(N-1) + fib(N-2).
 
 %% Euler exercise 3: What's the largest prime you can divide Number by?
 %%
@@ -65,10 +69,12 @@ fib(N) ->
 %% 6857
 p03(Num) ->
   p03(Num, 2, 0).
-  
+
 p03(Num, Num, _) ->
   Num;
+
 p03(Num, Div, Acc) when Num rem Div =:= 0, Div >= Acc ->
   p03(Num div Div, 2, Div);
+  
 p03(Num, Div, Acc) ->
   p03(Num, Div + 1, Acc).
