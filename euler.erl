@@ -26,15 +26,12 @@ p01_sum(Limit, I) when Limit rem I =:= 0 ->
 p01_sum(_, _) ->
   0.
 
-p01_and(A, A) ->
-  A;
-p01_and(A, B) when A > B ->
-  A;
 p01_and(A, B) when B > A ->
   B;
 p01_and(A, _) ->
   A.
 
+%% A quick solution if we don't care about input variables for 3 and 5
 p01_static(N) ->
   lists:sum([X || X <- lists:seq(1, N-1), (X rem 3 =:= 0) or (X rem 5 =:= 0)]).
 
